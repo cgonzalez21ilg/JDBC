@@ -9,6 +9,8 @@ public interface EventDAO {
     Event getEventById(long id) throws DAOException;
     List<Event> getEvents() throws DAOException;
     List<Event> getEvents(int offset, int count) throws DAOException;
+    List<Event> getEvents(boolean visible) throws DAOException;
+    List<Event> getEvents(boolean visible, int offset, int count) throws DAOException;
     List<Event> getEvents(String searchTerm) throws DAOException;
     List<Event> getEvents(String searchTerm, int offset, int count) throws DAOException;
 }

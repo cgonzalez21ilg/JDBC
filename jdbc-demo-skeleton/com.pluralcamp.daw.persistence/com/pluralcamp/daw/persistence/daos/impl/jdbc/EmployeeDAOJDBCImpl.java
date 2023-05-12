@@ -1,9 +1,7 @@
 package com.pluralcamp.daw.persistence.daos.impl.jdbc;
-
 import com.pluralcamp.daw.entities.core.Employee;
 import com.pluralcamp.daw.persistence.daos.contracts.EmployeeDAO;
 import com.pluralcamp.daw.persistence.exceptions.DAOException;
-
 import java.util.List;
 
 public class EmployeeDAOJDBCImpl implements EmployeeDAO {
