@@ -16,7 +16,7 @@ public class App {
         //EventDAOJDBCImpl eventDAO = new EventDAOJDBCImpl();
 
         try{
-            Color c =colorDAO.getColorById(5);
+            Color c =colorDAO.getColorById(8);
             if(c != null) {
                 System.out.println(c.toString());
             }

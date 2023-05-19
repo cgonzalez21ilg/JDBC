@@ -1,4 +1,5 @@
 package com.pluralcamp.daw.persistence.daos.impl.jdbc;
+import com.mysql.cj.protocol.ResultsetRow;
 import com.pluralcamp.daw.entities.core.Color;
 import com.pluralcamp.daw.persistence.daos.contracts.ColorDAO;
 import com.pluralcamp.daw.persistence.exceptions.DAOException;
@@ -44,7 +45,18 @@ public class ColorDAOJDBCImpl implements ColorDAO {
     @Override
     public List<Color> getColors() throws DAOException {
         List<Color> colors = new ArrayList<>();
-        return null;
+        try(Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/calendar?serverTimezone=Europe/Paris", "carlos", "1234");
+        PreparedStatement sentSQL =connection.prepareStatement("SELECT id, name, red, green, blue FROM colors");
+        ResultSet reader = sentSQL.executeQuery();){
+            while(reader.next()){
+                Color color = new Color (reader.getString("name"), reader.getInt("red"), reader.getInt("green"), reader.getInt("blue"));
+                color.setId(reader.getLong("id"));
+                colors.add(color);
+            }
+        } catch (SQLException ex){
+            throw new DAOException(ex);
+        }
+        return colors;
     }
 
     @Override
